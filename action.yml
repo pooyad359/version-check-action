@@ -1,0 +1,15 @@
+name: "Check Versions"
+description: "Compare version numbers between branches"
+author: "Pooya Darvehei"
+
+inputs:
+  GITHUB_TOKEN:
+    description: "GitHub token"
+    required: true
+  TENOR_TOKEN:
+    desctiption: "Tenor API token"
+    required: true
+
+  runs:
+    using: "node14"
+    main: "dist/index.js"

@@ -1,0 +1,24 @@
+{
+  "name": "version-check-action",
+  "version": "0.0.1",
+  "description": "Compare version numbers between branches",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build src/action.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pooyad359/version-check-action.git"
+  },
+  "author": "Pooya Darvehei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pooyad359/version-check-action/issues"
+  },
+  "homepage": "https://github.com/pooyad359/version-check-action#readme",
+  "dependencies": {
+    "@vercel/ncc": "^0.33.1",
+    "yarn": "^1.22.17"
+  }
+}
