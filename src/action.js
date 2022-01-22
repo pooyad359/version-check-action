@@ -10,6 +10,14 @@ async function read_json(filename, branch) {
 }
 
 async function main() {
+  const { stdout, stderr } = await exec(
+    "git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*"
+  );
+  if (stderr) {
+    console.log(stderr);
+  } else {
+    console.log(stdout);
+  }
   const package_current = await read_json("package.json", "HEAD");
   var package_master;
   try {
