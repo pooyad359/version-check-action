@@ -1,6 +1,6 @@
 {
   "name": "version-check-action",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Compare version numbers between branches",
   "main": "index.js",
   "scripts": {
