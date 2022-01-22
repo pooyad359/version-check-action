@@ -100,7 +100,7 @@ async function main() {
       `Version number is updated from ${package_master.version} to ${package_current.version}`
     );
   } else {
-    throw RangeError(
+    core.setFailed(
       `The new version (${package_current.version}) must be higher than the current version (${package_master.version})`
     );
   }
