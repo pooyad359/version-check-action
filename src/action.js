@@ -1,5 +1,40 @@
-async function run() {
-  console.log("Hi There!");
+const util = require("util");
+const core = require("@actions/core");
+const exec = util.promisify(require("child_process").exec);
+async function read_json(filename, branch) {
+  const { stdout, stderr } = await exec(`git show ${branch}:${filename}`);
+  if (stderr) {
+    console.log(stderr);
+  }
+  return JSON.parse(`${stdout}`);
 }
 
-run();
+async function main() {
+  const { stdout, stderr } = await exec(
+    "git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*"
+  );
+  if (stderr) {
+    console.log(stderr);
+  } else {
+    console.log(stdout);
+  }
+  const package_current = await read_json("package.json", "HEAD");
+  var package_master;
+  try {
+    package_master = await read_json("package.json", "origin/master");
+  } catch (error) {
+    package_master = await read_json("package.json", "origin/main");
+  }
+  const master_version = package_master.version.split(".").map((x) => +x);
+  const current_version = package_current.version.split(".").map((x) => +x);
+  if (current_version > master_version) {
+    console.log(
+      `Version number is updated from ${package_master.version} to ${package_current.version}`
+    );
+  } else {
+    core.setFailed(
+      `The new version (${package_current.version}) must be higher than the current version (${package_master.version})`
+    );
+  }
+}
+main();
