@@ -1,5 +1,5 @@
-const { copyFileSync } = require("fs");
 const util = require("util");
+const core = require("@actions/core");
 const exec = util.promisify(require("child_process").exec);
 async function read_json(filename, branch) {
   const { stdout, stderr } = await exec(`git show ${branch}:${filename}`);
