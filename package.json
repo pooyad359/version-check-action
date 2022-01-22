@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/pooyad359/version-check-action#readme",
   "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
     "@vercel/ncc": "^0.33.1",
     "yarn": "^1.22.17"
   }
