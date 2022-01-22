@@ -33,7 +33,7 @@ async function main() {
     );
   } else {
     throw RangeError(
-      `The new version (${package_current.version}) must be higher than current version (${package_master.version})`
+      `The new version (${package_current.version}) must be higher than the current version (${package_master.version})`
     );
   }
 }
