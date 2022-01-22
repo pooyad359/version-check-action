@@ -2,7 +2,9 @@ name: Test
 
 on:
   pull_request:
-    types: [opened]
+    branches:
+      - master
+      - main
 
 jobs:
   test:
