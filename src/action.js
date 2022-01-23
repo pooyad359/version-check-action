@@ -10,6 +10,8 @@ async function read_json(filename, branch) {
 }
 
 async function main() {
+  console.log("Environemnt Variables:", process.env);
+
   const { stdout, stderr } = await exec(
     "git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*"
   );
@@ -37,4 +39,5 @@ async function main() {
     );
   }
 }
+
 main();
