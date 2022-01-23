@@ -13,5 +13,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          default_branch: master
+          # default_branch: master
           json_path: package.json
