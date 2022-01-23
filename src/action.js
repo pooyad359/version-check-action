@@ -19,7 +19,7 @@ async function main() {
   );
   const FILEPATH = process.env.INPUT_JSON_PATH;
   if (stderr) {
-    core.setFailed(stderr);
+    console.log("STDERR:", stderr);
   } else {
     console.log(stdout);
   }
