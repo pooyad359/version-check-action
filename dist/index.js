@@ -1696,26 +1696,23 @@ async function read_json(filename, branch) {
 }
 
 async function main() {
+  const BASE_REF =
+    process.env.INPUT_DEFAULT_BRANCH || process.env.GITHUB_BASE_REF;
+
   const { stdout, stderr } = await exec(
     "git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*"
   );
-  if (stderr) {
-    console.log(stderr);
-  } else {
-    console.log(stdout);
-  }
-  const package_current = await read_json("package.json", "HEAD");
+  const FILEPATH = process.env.INPUT_JSON_PATH;
+  console.log("STDOUT:", stdout);
+  console.log("STDERR:", stderr);
+  const package_current = await read_json(FILEPATH, "HEAD");
   var package_master;
-  try {
-    package_master = await read_json("package.json", "origin/master");
-  } catch (error) {
-    package_master = await read_json("package.json", "origin/main");
-  }
-  const master_version = package_master.version.split(".").map((x) => +x);
+  package_base = await read_json(FILEPATH, "origin/" + BASE_REF);
+  const master_version = package_base.version.split(".").map((x) => +x);
   const current_version = package_current.version.split(".").map((x) => +x);
   if (current_version > master_version) {
     console.log(
-      `Version number is updated from ${package_master.version} to ${package_current.version}`
+      `Version number is updated from ${package_base.version} to ${package_current.version}`
     );
   } else {
     core.setFailed(
@@ -1723,6 +1720,7 @@ async function main() {
     );
   }
 }
+
 main();
 
 })();
