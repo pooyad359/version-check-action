@@ -6,10 +6,10 @@ inputs:
   GITHUB_TOKEN:
     description: "GitHub token"
     required: true
-  deafault_branch:
-    description: "Default branch used for version comparision. Default to master."
+  default_branch:
+    description: "Default branch used for version comparision. Default is the base branch during merging."
     required: false
-    default: "master"
+    default: null
   json_path:
     description: "Path to json file containing the version. Default is package.json"
     required: false
