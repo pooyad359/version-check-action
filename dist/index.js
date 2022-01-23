@@ -1696,7 +1696,6 @@ async function read_json(filename, branch) {
 }
 
 async function main() {
-  console.log("Environemnt Variables:", process.env);
   const BASE_REF =
     process.env.INPUT_DEFAULT_BRANCH || process.env.GITHUB_BASE_REF;
 
@@ -1709,11 +1708,6 @@ async function main() {
   const package_current = await read_json(FILEPATH, "HEAD");
   var package_master;
   package_base = await read_json(FILEPATH, "origin/" + BASE_REF);
-  //   try {
-  //     package_master = await read_json(FILEPATH, "origin/master");
-  //   } catch (error) {
-  //     package_master = await read_json(FILEPATH, "origin/main");
-  //   }
   const master_version = package_base.version.split(".").map((x) => +x);
   const current_version = package_current.version.split(".").map((x) => +x);
   if (current_version > master_version) {
