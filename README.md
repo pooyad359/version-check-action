@@ -11,12 +11,13 @@ on:
   pull_request:
     branches:
       - master
-      - main
 
 jobs:
   version-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - uses: pooyad359/version-check-action@v0.0.3
+        with:
+          json_path: package.json
 ```
