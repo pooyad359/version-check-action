@@ -6,7 +6,14 @@ inputs:
   GITHUB_TOKEN:
     description: "GitHub token"
     required: true
-
+  deafault_branch:
+    description: "Default branch used for version comparision. Default to master."
+    required: false
+    default: "master"
+  json_path:
+    description: "Path to json file containing the version. Default is package.json"
+    required: false
+    default: "package.json"
 runs:
   using: "node16"
   main: "dist/index.js"
