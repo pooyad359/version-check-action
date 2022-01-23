@@ -18,11 +18,8 @@ async function main() {
     "git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*"
   );
   const FILEPATH = process.env.INPUT_JSON_PATH;
-  if (stderr) {
-    console.log("STDERR:", stderr);
-  } else {
-    console.log(stdout);
-  }
+  console.log("STDOUT:", stdout);
+  console.log("STDERR:", stderr);
   const package_current = await read_json(FILEPATH, "HEAD");
   var package_master;
   package_base = await read_json(FILEPATH, "origin/" + BASE_REF);
